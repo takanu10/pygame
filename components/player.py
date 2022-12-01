@@ -6,7 +6,9 @@ class Player(Sprite):
 
     def __init__(self, pos, **kwargs):
         super().__init__(**kwargs)
-        self.image = pygame.image.load("./images/human.png")
+        image = pygame.image.load("./images/human.png")
+        self.image = pygame.transform.scale(image, (50,80))
+
         #self.image = pygame.Surface((100, 100))
         # self.surf.set_colorkey((255, 255, 255), RLEACCEL)        
         self.rect = self.image.get_rect()

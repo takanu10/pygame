@@ -14,7 +14,7 @@ class GameScreen(BaseScreen):
         super().__init__(*args, **kwargs)
 
         # Create the main player
-        self.player = Player((300,200), limits=self.rect)
+        self.player = Player((100,200), limits=self.rect)
         self.quit = TextBox(
             (200, 50), "Press Q to Quit", color=(255,255,255), bgcolor=(56, 164, 168)
         )
