@@ -13,7 +13,7 @@ class GameScreen(BaseScreen):
         super().__init__(*args, **kwargs)
 
         # Create the main player
-        self.player = Player()
+        self.player = Player((100,200), limits=self.rect)
 
         # Create the enemies
         self.enemy = Enemy()

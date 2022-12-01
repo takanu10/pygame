@@ -10,6 +10,7 @@ class Sprite(pygame.sprite.Sprite):
         self.limits = limits
 
     def boundaries(self):
+        """Method that ensures boundaries are maintained"""
         if not self.limits:
             return
 
@@ -30,6 +31,7 @@ class Sprite(pygame.sprite.Sprite):
             self.rect.bottom = self.limits.bottom
 
     def move(self, direction):
+        """Method that handles movement for sprite"""
         if direction == "up":
             self.rect.y -= 10
         if direction == "down":
