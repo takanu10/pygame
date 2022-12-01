@@ -8,31 +8,31 @@ from components.player import Player
 
 
 class GameScreen(BaseScreen):
+    """Class that runs during main gameplay"""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         # Create the main player
         self.player = Player()
-        #self.paddle = Paddle(200, 30, (0, 255, 0), limits=self.rect)
 
         # Create the enemies
         self.enemy = Enemy()
-        #self.ball = Ball(limits=self.rect)
-        #self.ball.speed = 8
-
-        #self.ball.angle = random.randint(0, 31416) / 10000
 
         # Create the obstacles
         self.obstacle = Obstacle()
-        #self.tiles = TileGroup(tile_width=120, tile_height=30)
 
         # Put all sprites in group
+        self.quit = TextBox(
+            (200, 50), "Press Q to Quit", color=(255,255,255), bgcolor=(56, 164, 168)
+        )
         self.sprites = pygame.sprite.Group()
         self.sprites.add(self.player)
         self.sprites.add(self.enemy)
         self.sprites.add(self.obstacle)
+        self.sprites.add(self.quit)
 
     def update(self):
+        """Method that updates key presses"""
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
             self.player.move("up")
@@ -48,36 +48,18 @@ class GameScreen(BaseScreen):
         if keys[pygame.K_RIGHT]:
             self.player.move("right")
         
-
         self.sprites.update()
 
-        #HANDLE COLLISION
-
-        #collided = self.ball.collidetiles(self.tiles)
-
-        #caught_the_ball = self.ball.collidepaddle(self.paddle.rect)
-
-        #FAIL STATE
-
-        #if self.player.rect.top == self.
-            # self.running = False
-            # self.next_screen = "game_over"
-
-        # if self.ball.rect.bottom > self.paddle.rect.top and not caught_the_ball:
-        #     self.running = False
-        #     self.next_screen = "game_over"
-
     def draw(self):
+        """Method to draw items onto surface"""
+        self.quit.rect.x = 395
+        self.quit.rect.y = 5
         self.window.fill((37, 92, 94))
         self.sprites.draw(self.window)
-        #self.tiles.draw(self.window)
 
     def manage_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            self.running = False
-            self.next_screen = "welcome"
-
+        """Method that tracks key presses """
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                self.ball.speed = 10
-                self.ball.angle = 1.5
+            if event.key == pygame.K_q:
+                self.running = False
+                self.next_screen = "welcome"
