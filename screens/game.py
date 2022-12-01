@@ -34,20 +34,15 @@ class GameScreen(BaseScreen):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
             self.player.move("up")
-            #self.player.down = False
 
         if keys[pygame.K_DOWN]:
             self.player.move("down")
-            #self.player.up = False
 
         if keys[pygame.K_LEFT]:
             self.player.move("left")
 
         if keys[pygame.K_RIGHT]:
             self.player.move("right")
-        
-        # ADDENEMY = pygame.USEREVENT + 1
-        # pygame.time.set_timer(ADDENEMY, 250)
 
         self.sprites.update()
 
@@ -64,6 +59,12 @@ class GameScreen(BaseScreen):
             if event.key == pygame.K_q:
                 self.running = False
                 self.next_screen = "welcome"
+        elif pygame.sprite.spritecollideany(self.player, self.enemies):
+            # If so, then remove the player and stop the loop
+            self.player.kill()
+            self.running = False
+            self.next_screen = "game_over"
+
         elif event.type == ADDENEMY:
             self.enemy = Enemy()
             self.enemies.add(self.enemy)
