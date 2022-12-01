@@ -16,14 +16,14 @@ class Game:
 
         # Available screens
         screens = {
-            "intro": WelcomeScreen,
+            "welcome": WelcomeScreen,
             "game": GameScreen,
             "game_over": GameOverScreen,
         }
 
         # Start the loop
         run = True
-        current_screen = "game"
+        current_screen = "welcome"
         while run:
             # Obtain the screen class
             pygame.time.delay(100)

@@ -7,6 +7,7 @@ from components.obstacle import Obstacle
 from components.player import Player
 
 ADDENEMY = pygame.USEREVENT + 1
+
 class GameScreen(BaseScreen):
     """Class that runs during main gameplay"""
     def __init__(self, *args, **kwargs):
@@ -26,7 +27,7 @@ class GameScreen(BaseScreen):
         #self.sprites.add(self.obstacle)
         self.sprites.add(self.quit)
 
-        pygame.time.set_timer(ADDENEMY, 250)
+        pygame.time.set_timer(ADDENEMY, 1000)
 
     def update(self):
         """Method that updates key presses"""
