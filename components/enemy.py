@@ -21,5 +21,3 @@ class Enemy(Sprite):
         if self.rect.right < 0:
             self.kill()
     
-    def collision():
-        pass

@@ -9,7 +9,7 @@ class Game:
     def __init__(self):
         # Creates the window
         self.window = pygame.display.set_mode((600, 600))
-        self.title = pygame.display.set_caption("Sprint")
+        self.title = pygame.display.set_caption("Brace")
 
     def run(self):
         """Main method, manages interaction between screens"""

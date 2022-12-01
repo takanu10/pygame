@@ -10,7 +10,7 @@ class WelcomeScreen(BaseScreen):
         self.button = TextBox(
             (180, 100), "Play", color=(255,255,255), bgcolor=(207, 126, 21)
         )
-        self.title = TextBox((180,100), "Sprint!", color=(207, 126, 21), bgcolor=(21, 68, 207))
+        self.title = TextBox((180,100), "BRACE", color=(207, 126, 21), bgcolor=(21, 68, 207))
         # self.button1 = TextBox(
         #     (200, 100), "Quit", color=(255, 255, 255), bgcolor=(0, 0, 0)
         # )
