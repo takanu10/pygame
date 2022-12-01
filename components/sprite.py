@@ -6,7 +6,7 @@ class Sprite(pygame.sprite.Sprite):
     def __init__(self, limits=None):
         super().__init__()
         # self.image = pygame.Surface(30,30)
-        self.rect = self.image.get_rect()
+        #self.rect = self.image.get_rect()
         self.limits = limits
 
     def boundaries(self):
@@ -43,6 +43,8 @@ class Sprite(pygame.sprite.Sprite):
 
         self.boundaries()
         
-
-    def update(self):
-        self.rect.x += 5
+    def move_to(self, x, y):
+        """Moves the object to a specified location"""
+        self.rect.x = x
+        self.rect.y = y
+        self.boundaries()
