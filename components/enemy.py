@@ -3,6 +3,8 @@ import pygame
 from .sprite import Sprite
 
 class Enemy(Sprite):
+    """Class that defines logic for the main enemies the player has to avoid"""
+
     def __init__(self):
         super().__init__()
         self.surface = pygame.Surface(20,10)
