@@ -3,10 +3,11 @@ import pygame
 from screens.base_screen import BaseScreen
 from components.text_box import TextBox
 from components.enemy import Enemy
-from components.obstacle import Obstacle
+from components.support import Support
 from components.player import Player
 
 ADDENEMY = pygame.USEREVENT + 1
+ADDSUPPORT = pygame.USEREVENT + 1
 
 class GameScreen(BaseScreen):
     """Class that runs during main gameplay"""
@@ -22,6 +23,7 @@ class GameScreen(BaseScreen):
         #self.obstacle = Obstacle()
         # Put all sprites in group
         self.enemies = pygame.sprite.Group()
+        #self.supports = pygame.sprite.Group()
         self.sprites = pygame.sprite.Group()
         self.sprites.add(self.player)
         #self.sprites.add(self.obstacle)
@@ -55,18 +57,27 @@ class GameScreen(BaseScreen):
 
     def manage_event(self, event):
         """Method that tracks key presses """
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_q:
-                self.running = False
-                self.next_screen = "welcome"
-        elif pygame.sprite.spritecollideany(self.player, self.enemies):
+        if pygame.sprite.spritecollideany(self.player, self.enemies):
             # If so, then remove the player and stop the loop
             self.player.kill()
             self.running = False
             self.next_screen = "game_over"
+
+        # if pygame.sprite.spritecollideany(self.player, self.supports):
+        #     #if player hits support, time will go down
+        #     pass
 
         elif event.type == ADDENEMY:
             self.enemy = Enemy()
             self.enemies.add(self.enemy)
             self.sprites.add(self.enemy)
 
+        # elif event.type == ADDSUPPORT:
+        #     self.sup = Support()
+        #     self.supports.add(self.sup)
+        #     self.sprites.add(self.sup)
+
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_q:
+                self.running = False
+                self.next_screen = "welcome"

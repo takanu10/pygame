@@ -3,8 +3,8 @@ import pygame
 from .sprite import Sprite
 
 
-class Obstacle(Sprite):
-    """Class that defines logic for obstacles the player has to avoid"""
+class Support(Sprite):
+    """Class that defines logic for support sprites that decrease timer when hit by player"""
     def __init__(self, w=40, h=40, color=(255,255,255), bgcolor=(0,0,255), **kwargs):
         super().__init__(**kwargs)
 

@@ -13,6 +13,12 @@ class Game:
 
     def run(self):
         """Main method, manages interaction between screens"""
+        #Brace is a game in which there's a countdown as the player tries to avoid enemies
+        #Support sprites will increase timer by 5 sec when hit
+        #json will store player data for highest times 
+
+        #Timer 1: countdown
+        #Timer 2: Times how long player stays alive
 
         # Available screens
         screens = {
