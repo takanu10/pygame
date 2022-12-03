@@ -19,17 +19,17 @@ class GameScreen(BaseScreen):
         self.quit = TextBox(
             (200, 50), "Press Q to Quit", color=(255,255,255), bgcolor=(56, 164, 168)
         )
-        # Create the obstacles
-        #self.obstacle = Obstacle()
         # Put all sprites in group
         self.enemies = pygame.sprite.Group()
-        #self.supports = pygame.sprite.Group()
+        # Create the support items
+        self.supports = pygame.sprite.Group()
         self.sprites = pygame.sprite.Group()
         self.sprites.add(self.player)
-        #self.sprites.add(self.obstacle)
+        #self.sprites.add(self.supports)
         self.sprites.add(self.quit)
 
         pygame.time.set_timer(ADDENEMY, 1000)
+        pygame.time.set_timer(ADDSUPPORT, 1500)
 
     def update(self):
         """Method that updates key presses"""
@@ -45,6 +45,16 @@ class GameScreen(BaseScreen):
 
         if keys[pygame.K_RIGHT]:
             self.player.move("right")
+
+
+#      timer = pygame.time.get_ticks()
+#         # self.time_counter = self.clock.tick()
+#         if self.running == True:
+#             if now - self.start_time > 15000:
+#                 print("Inactive for more than 15 seconds. Returning to main menu.")
+#                 self.next_screen = "welcome"
+#                 self.running = False
+#         self.timer = TextBox((50,50), str(round(15-(now - self.start_time)/1000,1)), color = (255,255,255), bgcolor=(0,0,0))
 
         self.sprites.update()
 
@@ -63,19 +73,21 @@ class GameScreen(BaseScreen):
             self.running = False
             self.next_screen = "game_over"
 
-        # if pygame.sprite.spritecollideany(self.player, self.supports):
-        #     #if player hits support, time will go down
-        #     pass
+        elif pygame.sprite.spritecollideany(self.player, self.supports):
+            #if player hits support, time will go down
+            self.player.kill()
+            self.running = False
+            self.next_screen = "game_over"
 
         elif event.type == ADDENEMY:
             self.enemy = Enemy()
             self.enemies.add(self.enemy)
             self.sprites.add(self.enemy)
 
-        # elif event.type == ADDSUPPORT:
-        #     self.sup = Support()
-        #     self.supports.add(self.sup)
-        #     self.sprites.add(self.sup)
+        elif event.type == ADDSUPPORT:
+            self.sup = Support()
+            self.supports.add(self.sup)
+            self.sprites.add(self.sup)
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
