@@ -46,16 +46,6 @@ class GameScreen(BaseScreen):
         if keys[pygame.K_RIGHT]:
             self.player.move("right")
 
-
-#      timer = pygame.time.get_ticks()
-#         # self.time_counter = self.clock.tick()
-#         if self.running == True:
-#             if now - self.start_time > 15000:
-#                 print("Inactive for more than 15 seconds. Returning to main menu.")
-#                 self.next_screen = "welcome"
-#                 self.running = False
-#         self.timer = TextBox((50,50), str(round(15-(now - self.start_time)/1000,1)), color = (255,255,255), bgcolor=(0,0,0))
-
         self.sprites.update()
 
     def draw(self):
