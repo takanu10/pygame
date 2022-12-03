@@ -19,6 +19,10 @@ class GameScreen(BaseScreen):
         )
         #object that tracks time 
         self.clock = pygame.time.Clock()
+        self.counter, self.text = 10, '10'.rjust(3)
+        self.font = pygame.font.SysFont('Consolas', 30)
+
+
         # put all sprites in groups
         self.enemies = pygame.sprite.Group()
         self.supports = pygame.sprite.Group()
@@ -29,7 +33,8 @@ class GameScreen(BaseScreen):
         #broadcasts the custom event after specified time 
         self.ADDENEMY = pygame.time.set_timer(pygame.USEREVENT, 1000)
         self.ADDSUPPORT = pygame.time.set_timer(pygame.USEREVENT + 1, 5000)
-        #self.TIMER = pygame.time.set_timer(pygame.USEREVENT + 2, 5000)
+        #every second, the counter goes down
+        self.TIMER = pygame.time.set_timer(pygame.USEREVENT + 2, 1000)
 
     def update(self):
         """Method that updates key presses"""
@@ -66,6 +71,8 @@ class GameScreen(BaseScreen):
         self.quit.rect.y = 5
         self.window.fill((37, 92, 94))
         self.sprites.draw(self.window)
+        self.window.blit(self.font.render(self.text, True, (0, 0, 0)), (32, 48))
+
 
     def manage_event(self, event):
         """Method that tracks key presses """
@@ -77,24 +84,25 @@ class GameScreen(BaseScreen):
 
         if pygame.sprite.spritecollideany(self.player, self.supports):
             #if player hits support, time will go down
-            self.player.kill()
-            self.running = False
-            self.next_screen = "game_over"
+            self.counter += 5
 
         #custom event that adds the enemy sprite
+        #enemy
         elif event.type == pygame.USEREVENT:
             self.enemy = Enemy()
             self.enemies.add(self.enemy)
             self.sprites.add(self.enemy)
-        # elif event.type == ADDENEMY:
-        #     self.enemy = Enemy()
-        #     self.enemies.add(self.enemy)
-        #     self.sprites.add(self.enemy)
         #custom event that adds the support sprite
+        #support
         elif event.type == pygame.USEREVENT + 1:
             self.sup = Support()
             self.supports.add(self.sup)
             self.sprites.add(self.sup)
+        #custom event that handles timer counter
+        #timer
+        elif event.type == pygame.USEREVENT + 2:
+            self.counter -= 1
+            self.text = str(self.counter).rjust(3) if self.counter > 0 else 'boom!'
 
         # elif event.type == : 
         #     counter -= 1
