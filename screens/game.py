@@ -6,9 +6,6 @@ from components.enemy import Enemy
 from components.support import Support
 from components.player import Player
 
-ADDENEMY = pygame.USEREVENT + 1
-ADDSUPPORT = pygame.USEREVENT + 1
-
 class GameScreen(BaseScreen):
     """Class that runs during main gameplay"""
     def __init__(self, *args, **kwargs):
@@ -16,20 +13,23 @@ class GameScreen(BaseScreen):
 
         # Create the main player
         self.player = Player((100,200), limits=self.rect)
+        #Quit text on top right
         self.quit = TextBox(
             (200, 50), "Press Q to Quit", color=(255,255,255), bgcolor=(56, 164, 168)
         )
-        # Put all sprites in group
+        #object that tracks time 
+        self.clock = pygame.time.Clock()
+        # put all sprites in groups
         self.enemies = pygame.sprite.Group()
-        # Create the support items
         self.supports = pygame.sprite.Group()
         self.sprites = pygame.sprite.Group()
         self.sprites.add(self.player)
-        #self.sprites.add(self.supports)
         self.sprites.add(self.quit)
 
-        pygame.time.set_timer(ADDENEMY, 1000)
-        pygame.time.set_timer(ADDSUPPORT, 1500)
+        #broadcasts the custom event after specified time 
+        self.ADDENEMY = pygame.time.set_timer(pygame.USEREVENT, 1000)
+        self.ADDSUPPORT = pygame.time.set_timer(pygame.USEREVENT + 1, 5000)
+        #self.TIMER = pygame.time.set_timer(pygame.USEREVENT + 2, 5000)
 
     def update(self):
         """Method that updates key presses"""
@@ -46,16 +46,18 @@ class GameScreen(BaseScreen):
         if keys[pygame.K_RIGHT]:
             self.player.move("right")
 
+        # while self.run:
+        #     for e in pygame.event.get():
+        #         if e.type == pygame.USEREVENT: 
+        #             counter -= 1
+        #             text = str(counter).rjust(3) if counter > 0 else 'boom!'
+        #         if e.type == pygame.QUIT: 
+        #             run = False
 
-#      timer = pygame.time.get_ticks()
-#         # self.time_counter = self.clock.tick()
-#         if self.running == True:
-#             if now - self.start_time > 15000:
-#                 print("Inactive for more than 15 seconds. Returning to main menu.")
-#                 self.next_screen = "welcome"
-#                 self.running = False
-#         self.timer = TextBox((50,50), str(round(15-(now - self.start_time)/1000,1)), color = (255,255,255), bgcolor=(0,0,0))
-
+                # screen.fill((255, 255, 255))
+                # screen.blit(font.render(text, True, (0, 0, 0)), (32, 48))
+                # pygame.display.flip()
+                # self.clock.tick(60)
         self.sprites.update()
 
     def draw(self):
@@ -73,21 +75,30 @@ class GameScreen(BaseScreen):
             self.running = False
             self.next_screen = "game_over"
 
-        elif pygame.sprite.spritecollideany(self.player, self.supports):
+        if pygame.sprite.spritecollideany(self.player, self.supports):
             #if player hits support, time will go down
             self.player.kill()
             self.running = False
             self.next_screen = "game_over"
 
-        elif event.type == ADDENEMY:
+        #custom event that adds the enemy sprite
+        elif event.type == pygame.USEREVENT:
             self.enemy = Enemy()
             self.enemies.add(self.enemy)
             self.sprites.add(self.enemy)
-
-        elif event.type == ADDSUPPORT:
+        # elif event.type == ADDENEMY:
+        #     self.enemy = Enemy()
+        #     self.enemies.add(self.enemy)
+        #     self.sprites.add(self.enemy)
+        #custom event that adds the support sprite
+        elif event.type == pygame.USEREVENT + 1:
             self.sup = Support()
             self.supports.add(self.sup)
             self.sprites.add(self.sup)
+
+        # elif event.type == : 
+        #     counter -= 1
+        #     text = str(counter).rjust(3) if counter > 0 else 'boom!'
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
