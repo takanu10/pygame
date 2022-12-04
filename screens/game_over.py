@@ -1,8 +1,9 @@
 import pygame
 from screens.base_screen import BaseScreen
 from components.text_box import TextBox
-import app
 import os
+import webbrowser
+from subprocess import Popen
 
 class GameOverScreen(BaseScreen):
     def __init__(self, *args, **kwargs):
@@ -18,8 +19,6 @@ class GameOverScreen(BaseScreen):
         self.button3 = TextBox(
             (200, 100), "High Scores", color=(255,255,255), bgcolor=(207, 126, 21)
         )
-        # self.button1.rect.topleft = (200, 400)
-        # self.button2.rect.topleft = (500, 400)
         self.sprites.add(self.title, self.button1, self.button2, self.button3)
 
     def draw(self):
@@ -46,6 +45,6 @@ class GameOverScreen(BaseScreen):
                 self.next_screen = False
             #goes to flask high scores 
             elif self.button3.rect.collidepoint(event.pos):
-                os.system("start \"\" http://127.0.0.1:5000/")
-                # app.homepage()
-                # print("app is running")
+                Popen("python app.py")
+                webbrowser.open('http://127.0.0.1:5000/')
+
