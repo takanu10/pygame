@@ -43,9 +43,6 @@ class Game:
             # Run the screen
             screen.run()
 
-            #screen.next_screen = 
-
-            # When the `run` method stops, we should have a `next_screen` setup
             if screen.next_screen is False:
                 run = False
             # Switch to the next screen

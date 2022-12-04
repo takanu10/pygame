@@ -11,9 +11,6 @@ class WelcomeScreen(BaseScreen):
             (180, 100), "Play", color=(255,255,255), bgcolor=(207, 126, 21)
         )
         self.title = TextBox((180,100), "BRACE", color=(207, 126, 21), bgcolor=(21, 68, 207))
-        # self.button1 = TextBox(
-        #     (200, 100), "Quit", color=(255, 255, 255), bgcolor=(0, 0, 0)
-        # )
         self.sprites.add(self.button)
         self.sprites.add(self.title)
 

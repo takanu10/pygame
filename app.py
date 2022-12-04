@@ -12,13 +12,11 @@ def read_json(filename="./database/database.json"):
 
 @app.route("/")
 def homepage():
-    #json.dumps makes it not a dict; want it to be a dict 
     my_dict = {"title":"BRACE", "json_data":read_json()}
     return render_template("homepage.html", **my_dict)
 
 @app.route("/details", methods=['GET', 'POST'])
 def details():
-    #json.dumps makes it not a dict; want it to be a dict 
     my_dict = {"title": "BRACE"}
     return render_template("details.html", **my_dict)
 
