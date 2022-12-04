@@ -1,4 +1,3 @@
-import random
 import pygame
 from screens.base_screen import BaseScreen
 from components.text_box import TextBox

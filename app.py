@@ -1,5 +1,4 @@
 from flask import Flask, render_template
-from screens.game import GameScreen
 import json
 
 app = Flask(__name__,static_url_path='/static')
