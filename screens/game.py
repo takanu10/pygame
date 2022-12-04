@@ -71,7 +71,7 @@ class GameScreen(BaseScreen):
         self.quit.rect.y = 5
         self.window.fill((37, 92, 94))
         self.sprites.draw(self.window)
-        self.window.blit(self.font.render(self.text, True, (0, 0, 0)), (32, 48))
+        self.window.blit(self.font.render(self.text, True, (255,255,255)), (5, 15))
 
 
     def manage_event(self, event):
@@ -102,8 +102,12 @@ class GameScreen(BaseScreen):
         #timer
         elif event.type == pygame.USEREVENT + 2:
             self.counter -= 1
-            self.text = str(self.counter).rjust(3) if self.counter > 0 else 'boom!'
-
+            if self.counter > 0:
+                self.text = str(self.counter).rjust(3)
+                # self.text = str(self.counter).rjust(3) if self.counter > 0 else 'boom!'
+            else:
+                self.running = False
+                self.next_screen = "game_over"
         # elif event.type == : 
         #     counter -= 1
         #     text = str(counter).rjust(3) if counter > 0 else 'boom!'
