@@ -7,7 +7,7 @@ app = Flask(__name__)
 # def read_json(filename="./database/database.json"):
 #     """read + updates json file """
 with open("./database/database.json", 'r') as file:
-    data = file.read()
+    data = json.load(file)
         # return data
         # file_load["Time"].append(data)
     # total = f"{data} sec"
@@ -19,7 +19,8 @@ with open("./database/database.json", 'r') as file:
 
 @app.route("/")
 def homepage():
-    my_dict = {"title":"BRACE", "json_data":json.dumps(data)}
+    #json.dumps makes it not a dict; want it to be a dict 
+    my_dict = {"title":"BRACE", "json_data":data}
     return render_template("homepage.html", **my_dict)
 
     

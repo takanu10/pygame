@@ -14,4 +14,6 @@
 
 <h2>High Scores</h2>
 <p class="note">Number of seconds the player stayed alive</p>
-{% endblock %} {% block content %} {{ json_data }} {% endblock %}
+{% endblock %} {% block content %} {% for score in json_data %}
+<li>{{ score }}</li>
+{% endfor %} {% endblock %}
