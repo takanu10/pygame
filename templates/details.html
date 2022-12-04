@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}
+<h1>{{ title }}: Details</h1>
+
+{% endblock %} {% block content %}
+<h3>Enemy Sprite</h3>
+<p>Avoid this at all costs!</p>
+<img src="{{ url_for('static', filename='enemy.png') }}" />
+<h3>Support Sprite</h3>
+<p>Hit this to score 5 extra seconds on the timer!</p>
+<img src="{{ url_for('static', filename='support.png') }}" />
+<h3>Player Sprite</h3>
+<p>This is who you play as!</p>
+<img src="{{ url_for('static', filename='human.png') }}" />
+<br />
+<a href="http://127.0.0.1:5000">Back to homepage</a>
+{% endblock %}

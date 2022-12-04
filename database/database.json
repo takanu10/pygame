@@ -1,11 +1,8 @@
 [
+  { "user": 1, "time": "10 sec" },
+  { "user": 2, "time": "2 sec" },
+  { "user": 3, "time": "3 sec" },
+  { "user": 4, "time": "1 sec" },
   { "user": 5, "time": "1 sec" },
-  { "user": 6, "time": "6 sec" },
-  { "user": 7, "time": "2 sec" },
-  { "user": 8, "time": "2 sec" },
-  { "user": 9, "time": "1 sec" },
-  { "user": 10, "time": "1 sec" },
-  { "user": 11, "time": "1 sec" },
-  { "user": 12, "time": "1 sec" },
-  { "user": 1, "time": "2 sec" }
+  { "user": 6, "time": "5 sec" }
 ]
