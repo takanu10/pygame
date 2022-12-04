@@ -9,14 +9,6 @@ def read_json(filename="./database/database.json"):
     with open(filename, 'r') as file:
         data = json.load(file)
         return data
-        # return data
-        # file_load["Time"].append(data)
-    # total = f"{data} sec"
-    # file_load.append({"time":total})
-    # with open(filename, 'w') as file:
-    #     #converts back to json
-    #     json.dump(file_load, file)
-
 
 @app.route("/")
 def homepage():
