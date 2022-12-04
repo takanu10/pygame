@@ -7,7 +7,7 @@ class Enemy(Sprite):
 
     def __init__(self):
         super().__init__()
-        image = pygame.image.load("./images/enemy.png")
+        image = pygame.image.load("./static/enemy.png")
         self.image = pygame.transform.scale(image, (80,60))
         self.rect = self.image.get_rect(
             center=(

@@ -7,7 +7,7 @@ class Support(Sprite):
     """Class that defines logic for support sprites that decrease timer when hit by player"""
     def __init__(self):
         super().__init__()
-        image = pygame.image.load("./images/support.png")
+        image = pygame.image.load("./static/support.png")
         self.image = pygame.transform.scale(image, (150,80))
         self.rect = self.image.get_rect(
             center=(

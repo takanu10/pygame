@@ -6,7 +6,7 @@ class Player(Sprite):
 
     def __init__(self, pos, **kwargs):
         super().__init__(**kwargs)
-        image = pygame.image.load("./images/human.png")
+        image = pygame.image.load("./static/human.png")
         self.image = pygame.transform.scale(image, (50,80))
 
         #self.image = pygame.Surface((100, 100))
