@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block title %}
 <h1>{{ title }}: Home Page</h1>
-<p>
+<p class="description">
   Brace is about a game that involves an impending countdown timer and the
   player is trying to stay alive by avoiding the enemy obstacles (stress). Along
   the way, there will be support obstacles (affirmation) that will increase the
-  timer!
+  timer. Stay alive for as long as you can!
 </p>
 <p>
   If the timer hits zero or the player is struck by stress, then the game is
@@ -14,6 +14,16 @@
 
 <h2>High Scores</h2>
 <p class="note">Number of seconds the player stayed alive</p>
-{% endblock %} {% block content %} {% for score in json_data %}
-<li>{{ score }}</li>
-{% endfor %} {% endblock %}
+{% endblock %} {% block content %}
+<table>
+  <tr>
+    <th>User</th>
+    <th>Time</th>
+    {% for score in json_data %}
+  </tr>
+  <tr>
+    <td>{{ score["user"] }}</td>
+    <td>{{ score["time"] }} {% endfor %}</td>
+  </tr>
+</table>
+{% endblock %}

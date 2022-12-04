@@ -20,7 +20,7 @@ with open("./database/database.json", 'r') as file:
 @app.route("/")
 def homepage():
     #json.dumps makes it not a dict; want it to be a dict 
-    my_dict = {"title":"BRACE", "json_data":data}
+    my_dict = {"title":"BRACE", "json_data":data, "count": 0, "len": len(data)}
     return render_template("homepage.html", **my_dict)
 
     
