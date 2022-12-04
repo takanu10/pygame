@@ -92,33 +92,32 @@ class GameScreen(BaseScreen):
 
     def manage_event(self, event):
         """Method that tracks key presses """
-        #custom event that adds the enemy sprite
-        #enemy
+        #custom event that spawns enemy sprites
         if event.type == pygame.USEREVENT:
             self.enemy = Enemy()
             self.enemies.add(self.enemy)
             self.sprites.add(self.enemy)
-        #custom event that adds the support sprite
-        #support
+        #custom event that spawns support sprites
         elif event.type == pygame.USEREVENT + 1:
             self.sup = Support()
             self.supports.add(self.sup)
             self.sprites.add(self.sup)
         #custom event that handles countdown counter
-        #timer
         elif event.type == pygame.USEREVENT + 2:
             self.counter -= 1
             if self.counter > 0:
                 self.text = str(self.counter).rjust(3)
             else:
+                #if counter hits 0
+                self.update_json(self.overall_time)
                 self.running = False
                 self.next_screen = "game_over"
+        #timer for how long player lasts overall
         elif event.type == pygame.USEREVENT + 3:
             self.overall_time += 1
         elif pygame.sprite.spritecollideany(self.player, self.enemies):
             # If so, then remove the player and stop the loop
             self.player.kill()
-            #total = {"time": self.overall_time}
             self.update_json(self.overall_time)
             self.running = False
             self.next_screen = "game_over"

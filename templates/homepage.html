@@ -1,6 +1,17 @@
 {% extends 'base.html' %} {% block title %}
-<h1>Home Page: BRACE</h1>
-{% endblock %} {% block content %}
-<h1>Hello world</h1>
+<h1>{{ title }}: Home Page</h1>
+<p>
+  Brace is about a game that involves an impending countdown timer and the
+  player is trying to stay alive by avoiding the enemy obstacles (stress). Along
+  the way, there will be support obstacles (affirmation) that will increase the
+  timer!
+</p>
+<p>
+  If the timer hits zero or the player is struck by stress, then the game is
+  over.
+</p>
+<p>High scores are listed below.</p>
 
-{% endblock %}
+<h2>High Scores</h2>
+<p class="note">Number of seconds the player stayed alive</p>
+{% endblock %} {% block content %} {{ json_data }} {% endblock %}
